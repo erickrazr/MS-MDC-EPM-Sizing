@@ -1,5 +1,7 @@
 #!/bin/bash
 
+#Script Maintained by Erick Ferreira - github @erickrazr
+
 # shellcheck disable=SC2102,SC2181,SC2207
 
 if ! type "jq" > /dev/null; then
