@@ -1,13 +1,16 @@
-# Microsoft Defender CSPM and Entra Permissions Management Sizing Tool
+## Microsoft Defender CSPM and Entra Permissions Management Sizing Tool
 
-## AWS - Done
 
-## GCP - WIP
+### AWS - Done
 
-## Disclaimer: Unofficial Tool
+### GCP - WIP
+
+
+### Disclaimer: Unofficial Tool
 
 ### Not Microsoft Endorsed or Affiliated
 This MS-MDC-EPM-Sizing Script is an independent project and is not affiliated with, officially maintained, authorized, endorsed, or sponsored by Microsoft Corporation or any of its affiliates. Microsoft, AWS, and any associated names, trademarks, or logos are the property of their respective owners.
+
 
 ### Purpose and Use
 The purpose of this script is to assist in managing and enumerating resources in AWS environments for Microsoft Defender for CSPM and Entra Permissions Management. It is not intended to replace any official tools or services provided by Microsoft. Users should exercise caution and understand that the functionality and output of this script are not guaranteed to align with Microsoft's official tools
