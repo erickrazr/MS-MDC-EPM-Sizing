@@ -1,4 +1,4 @@
-# MS-MDC-EPM-Sizing
+# Microsoft Defender CSPM and Entra Permissions Management Sizing Tool
 
 ## AWS - Done
 
