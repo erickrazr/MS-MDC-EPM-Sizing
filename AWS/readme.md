@@ -13,16 +13,17 @@ To use the script, run it in your bash shell with optional arguments:
 
 ```bash
 ./aws_resource_counting_script.sh [org] [epm]
-
-org: Include to query AWS Organizations.
-epm: Include to report on EPM Sizing
 ```
 
+- `org`: Include to query AWS Organizations.
+- `epm`: Include to report on EPM Sizing
+
+
 ## Features
-**AWS Organization Querying**: Optionally queries the AWS Organization.
-**EPM Sizing Reporting**: Optional EPM Sizing reporting.
-**Utility Functions**: Includes functions for error handling and AWS resource descriptions.
-**Resource Counting**: Iterates through accounts and regions, counting AWS resources.
+- **AWS Organization Querying**: Optionally queries the AWS Organization.
+- **EPM Sizing Reporting**: Optional EPM Sizing reporting.
+- **Utility Functions**: Includes functions for error handling and AWS resource descriptions.
+- **Resource Counting**: Iterates through accounts and regions, counting AWS resources.
 
 ## AWS Utility Functions
 Contains various functions for interacting with AWS services like EC2, RDS, Lambda, and others.
