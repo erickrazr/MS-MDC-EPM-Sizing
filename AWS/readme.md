@@ -4,9 +4,9 @@
 This Bash script enumerates various AWS resources across regions and accounts within an AWS Organization. It's particularly useful for getting a comprehensive view of resource utilization for billing and management purposes. The script counts resources like EC2 instances, RDS instances, Lambda functions, EKS clusters, and more.
 
 ## Prerequisites
-**jq**: The script requires jq for JSON processing. Ensure it's installed and in your execution path.
-**AWS CLI**: The AWS CLI should be properly configured with the necessary permissions.
-**Bash Environment**: The script is intended for use in a bash environment.
+- **jq**: The script requires jq for JSON processing. Ensure it's installed and in your execution path.
+- **AWS CLI**: The AWS CLI should be properly configured with the necessary permissions.
+- **Bash Environment**: The script is intended for use in a bash environment.
 
 ## Usage
 To use the script, run it in your bash shell with optional arguments:
