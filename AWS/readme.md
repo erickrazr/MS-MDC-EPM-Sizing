@@ -34,7 +34,7 @@ Includes methods for describing and listing resources relevant to Microsoft CSPM
 Provides a summary of resource counts in the AWS environment.
 
 ## Note
-This script is for informational purposes and should be used according to your AWS environment and policies. Review and test in a non-production environment before production use.
+This script is for informational purposes and should be used according to your AWS environment and policies.
 
 ## Contact
 For queries or issues, open an issue on the GitHub repository.
