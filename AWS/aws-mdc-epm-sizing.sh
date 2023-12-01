@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#Script Maintained by Erick Ferreira - github @erickrazr
+#Script maintained by Erick Ferreira - github @erickrazr
 
 # shellcheck disable=SC2102,SC2181,SC2207
 
