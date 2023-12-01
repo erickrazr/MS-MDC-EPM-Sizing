@@ -418,13 +418,16 @@ count_account_resources() {
   echo "###################################################################################"
   echo ""
 
-  WORKLOAD_COUNT_GLOBAL=$((EC2_INSTANCE_COUNT_GLOBAL + RDS_INSTANCE_COUNT_GLOBAL + LAMBDA_COUNT_GLOBAL + EKS_CLUSTER_COUNT_GLOBAL + ECS_CLUSTER_COUNT_GLOBAL + DynamoDB_COUNT_GLOBAL + EMR_COUNT_GLOBAL + ELASTICACHE_COUNT_GLOBAL + KINESIS_COUNT_GLOBAL + S3_BUCKETS_COUNT))
-
+  EPM_COUNT_GLOBAL=$((EC2_INSTANCE_COUNT_GLOBAL + RDS_INSTANCE_COUNT_GLOBAL + LAMBDA_COUNT_GLOBAL + EKS_CLUSTER_COUNT_GLOBAL + ECS_CLUSTER_COUNT_GLOBAL + DynamoDB_COUNT_GLOBAL + EMR_COUNT_GLOBAL + ELASTICACHE_COUNT_GLOBAL + KINESIS_COUNT_GLOBAL + S3_BUCKETS_COUNT))
+  DCSPM_COUNT_GLOBAL=$((EC2_INSTANCE_COUNT_GLOBAL + RDS_INSTANCE_COUNT_GLOBAL + S3_BUCKETS_COUNT)
+  
   echo "###################################################################################"
   echo "List of Microsoft Defender CSPM Billable Resources:"
   echo "  Total EC2 Instances:     ${EC2_INSTANCE_COUNT_GLOBAL}"
   echo "  Total RDS Instances:     ${RDS_INSTANCE_COUNT_GLOBAL}"
   echo "  Total S3 Buckets:        ${S3_BUCKETS_COUNT}"
+  echo ""
+  echo "Total DCSPM Resources:   ${DCSPM_COUNT_GLOBAL}"
   echo ""
   echo "###################################################################################"
 
@@ -434,6 +437,9 @@ count_account_resources() {
     echo ""
     echo "###################################################################################"
     echo "EPM Billable Resources:"
+    echo "  Total EC2 Instances:  ${EC2_INSTANCE_COUNT_GLOBAL}"
+    echo "  Total RDS Instances:  ${RDS_INSTANCE_COUNT_GLOBAL}"
+    echo "  Total S3 Buckets:   ${S3_BUCKETS_COUNT}"
     echo "  Total Lambda Functions: ${LAMBDA_COUNT_GLOBAL}"
     echo "  Total EKS Cluster: ${EKS_CLUSTER_COUNT_GLOBAL}"
     echo "  Total ECS Clusters: ${ECS_CLUSTER_COUNT_GLOBAL}"
@@ -441,6 +447,8 @@ count_account_resources() {
     echo "  Total Elastic MapReduce(EMR): ${EMR_COUNT_GLOBAL}"
     echo "  Total Amazon Kinesis: ${EC2_INSTANCE_COUNT_GLOBAL}"
     echo "  Total ElastiCache: ${ELASTICACHE_COUNT_GLOBAL}"
+    echo ""
+    echo "Total EPM Resources:   ${EPM_COUNT_GLOBAL}"
     echo ""
     echo "###################################################################################"
   fi
