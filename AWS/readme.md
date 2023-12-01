@@ -40,3 +40,5 @@ This script is for informational purposes and should be used according to your A
 ## Contact
 For queries or issues, open an issue on the GitHub repository.
 
+License
+This project is licensed under the **MIT License**.
