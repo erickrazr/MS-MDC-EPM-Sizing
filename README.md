@@ -1,13 +1,4 @@
-# AWS - DCSPM and EPM Resource Count sizing Script 
-<br />
-
-### Disclaimer: Unofficial Tool
-
-### AWS - Done
-
-### GCP - WIP
-<br />
-
+# AWS/GCP - DCSPM and EPM Resource Count sizing Script 
 
 ## Overview
 This Bash script enumerates various AWS resources across regions and accounts within an AWS Organization. It's particularly useful for getting a comprehensive view of resource utilization for billing and management purposes. The script counts resources like EC2 instances, RDS instances, Lambda functions, EKS clusters, and more.
@@ -70,3 +61,6 @@ This project is licensed under the **MIT License**.
 
 #### Recommendations
 ##### Users are advised to verify the script's functionality in a non-production environment and ensure that its use aligns with their organizational policies and technical requirements before deploying it in a production environment.
+
+
+### Disclaimer: Unofficial Tool
