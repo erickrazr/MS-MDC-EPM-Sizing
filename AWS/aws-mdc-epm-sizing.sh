@@ -350,7 +350,7 @@ count_account_resources() {
       do
         RESOURCE_COUNT=$(aws_dynamodb_list_tables "${i}" |  jq -r '.TableNames | length')
         echo "  DynamoDB Tables in Region ${i}: ${RESOURCE_COUNT}"
-        EKS_CLUSTER_COUNT=$((DynamoDB_COUNT + RESOURCE_COUNT))
+        DynamoDB_COUNT=$((DynamoDB_COUNT + RESOURCE_COUNT))
       done
       echo "Total DynamoDB Tables - all regions: ${DynamoDB_COUNT}"
       echo "###################################################################################"
