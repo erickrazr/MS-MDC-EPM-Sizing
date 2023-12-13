@@ -373,7 +373,7 @@ count_account_resources() {
       for i in "${REGION_LIST[@]}"
       do
         RESOURCE_COUNT=$(aws_kinesis_list_streams "${i}" |  jq -r '.Clusters | length')
-        echo "Kinesis streams in Region ${i}: ${RESOURCE_COUNT}"
+        echo "   Kinesis streams in Region ${i}: ${RESOURCE_COUNT}"
         KINESIS_COUNT=$((KINESIS_COUNT + RESOURCE_COUNT))
       done
       echo "Total Kinesis Streams - all regions: ${KINESIS_COUNT}"
@@ -385,7 +385,7 @@ count_account_resources() {
       for i in "${REGION_LIST[@]}"
       do
         RESOURCE_COUNT=$(aws_elasticache_describe_cache_clusters "${i}" |  jq -r '.Clusters | length')
-        echo "Elasticache Clusters in Region ${i}: ${RESOURCE_COUNT}"
+        echo "   Elasticache Clusters in Region ${i}: ${RESOURCE_COUNT}"
         ELASTICACHE_COUNT=$((ELASTICACHE_COUNT + RESOURCE_COUNT))
       done
       echo "Total Elasticache Clusters - all regions: ${ELASTICACHE_COUNT}"
@@ -447,7 +447,7 @@ count_account_resources() {
     echo "  Total ECS Clusters: ${ECS_CLUSTER_COUNT_GLOBAL}"
     echo "  Total DynamoDB Tables: ${DynamoDB_COUNT_GLOBAL}"
     echo "  Total Elastic MapReduce(EMR): ${EMR_COUNT_GLOBAL}"
-    echo "  Total Amazon Kinesis: ${EC2_INSTANCE_COUNT_GLOBAL}"
+    echo "  Total Amazon Kinesis: ${KINESIS_COUNT_GLOBAL}"
     echo "  Total ElastiCache: ${ELASTICACHE_COUNT_GLOBAL}"
     echo ""
     echo "Total EPM Resources:   ${EPM_COUNT_GLOBAL}"
