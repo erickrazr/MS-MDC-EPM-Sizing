@@ -202,14 +202,16 @@ assume_role() {
   echo "Processing Account: ${ACCOUNT_NAME} (${ACCOUNT_ID})"
   if [ "${ACCOUNT_ID}" = "${MASTER_ACCOUNT_ID}" ]; then
     echo "  Account is the master account, skipping assume role ..."
-  else
-    ACCOUNT_ASSUME_ROLE_ARN="arn:aws:iam::${ACCOUNT_ID}:role/OrganizationAccountAccessRole"
-    SESSION_JSON=$(aws_sts_assume_role "${ACCOUNT_ASSUME_ROLE_ARN}")
-    if [ $? -ne 0 ] || [ -z "${SESSION_JSON}" ]; then
-      ASSUME_ROLE_ERROR="true"
-      echo "  Warning: Failed to assume role into Member Account ${ACCOUNT_NAME} (${ACCOUNT_ID}), skipping ..."
-    else
-      # Export environment variables used to connect to this member account.
+
+  ROLES=("OrganizationAccountAccessRole" "AWSControlTowerExecution")
+  for ROLE in "${ROLES[@]}"; do
+    ACCOUNT_ASSUME_ROLE_ARN="arn:aws:iam::${ACCOUNT_ID}:role/${ROLE}"
+    SESSION_DATA=$(aws_sts_assume_role "${ACCOUNT_ASSUME_ROLE_ARN}")
+    
+    if [ $? -eq 0 ] && [ -n "${SESSION_DATA}" ]; then
+      echo "  Successfully assumed role: ${ROLE}"
+
+      # Exportar as credenciais da role assumida
       AWS_ACCESS_KEY_ID=$(echo "${SESSION_JSON}"     | jq .Credentials.AccessKeyId     2>/dev/null | sed -e 's/^"//' -e 's/"$//')
       AWS_SECRET_ACCESS_KEY=$(echo "${SESSION_JSON}" | jq .Credentials.SecretAccessKey 2>/dev/null | sed -e 's/^"//' -e 's/"$//')
       AWS_SESSION_TOKEN=$(echo "${SESSION_JSON}"     | jq .Credentials.SessionToken    2>/dev/null | sed -e 's/^"//' -e 's/"$//')
