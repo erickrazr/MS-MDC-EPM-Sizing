@@ -239,6 +239,7 @@ unassume_role() {
 reset_account_counters() {
   EC2_INSTANCE_COUNT=0
   RDS_INSTANCE_COUNT=0
+  S3_BUCKETS_COUNT=0
   LAMBDA_COUNT=0
   EKS_CLUSTER_COUNT=0
   ECS_CLUSTER_COUNT=0
@@ -253,6 +254,7 @@ reset_account_counters() {
 reset_global_counters() {
   EC2_INSTANCE_COUNT_GLOBAL=0
   RDS_INSTANCE_COUNT_GLOBAL=0
+  S3_BUCKETS_COUNT_GLOBAL=0
   LAMBDA_COUNT_GLOBAL=0
   EKS_CLUSTER_COUNT_GLOBAL=0
   ECS_CLUSTER_COUNT_GLOBAL=0
@@ -305,6 +307,12 @@ count_account_resources() {
     echo "###################################################################################"
     echo ""
 
+    echo "###################################################################################"
+    echo "S3 Buckets on all Regions"
+    S3_BUCKETS_COUNT=$(aws_s3api_list_buckets | jq '.Buckets | length')
+    echo "Total S3 Buckets - all regions: ${S3_BUCKETS_COUNT}"
+    echo "###################################################################################"
+    echo ""
 
     if [ "${WITH_EPM}" = "true" ]; then
 
@@ -397,6 +405,7 @@ count_account_resources() {
 
     EC2_INSTANCE_COUNT_GLOBAL=$((EC2_INSTANCE_COUNT_GLOBAL + EC2_INSTANCE_COUNT))
     RDS_INSTANCE_COUNT_GLOBAL=$((RDS_INSTANCE_COUNT_GLOBAL + RDS_INSTANCE_COUNT))
+    S3_BUCKETS_COUNT_GLOBAL=$((S3_BUCKETS_COUNT_GLOBAL + S3_BUCKETS_COUNT))
     LAMBDA_COUNT_GLOBAL=$((LAMBDA_COUNT_GLOBAL + LAMBDA_COUNT))
     EKS_CLUSTER_COUNT_GLOBAL=$((EKS_CLUSTER_COUNT_GLOBAL + EKS_CLUSTER_COUNT))
     ECS_CLUSTER_COUNT_GLOBAL=$((ECS_CLUSTER_COUNT_GLOBAL + ECS_CLUSTER_COUNT))
@@ -413,21 +422,14 @@ count_account_resources() {
   done
 
   
-  echo "###################################################################################"
-  echo "S3 Buckets on all Regions"
-  S3_BUCKETS_COUNT=$(aws_s3api_list_buckets | jq '.Buckets | length')
-  echo "Total S3 Buckets - all regions: ${S3_BUCKETS_COUNT}"
-  echo "###################################################################################"
-  echo ""
-
-  EPM_COUNT_GLOBAL=$((EC2_INSTANCE_COUNT_GLOBAL + RDS_INSTANCE_COUNT_GLOBAL + LAMBDA_COUNT_GLOBAL + EKS_CLUSTER_COUNT_GLOBAL + ECS_CLUSTER_COUNT_GLOBAL + DynamoDB_COUNT_GLOBAL + EMR_COUNT_GLOBAL + ELASTICACHE_COUNT_GLOBAL + KINESIS_COUNT_GLOBAL + S3_BUCKETS_COUNT))
-  DCSPM_COUNT_GLOBAL=$((EC2_INSTANCE_COUNT_GLOBAL + RDS_INSTANCE_COUNT_GLOBAL + S3_BUCKETS_COUNT))
+  EPM_COUNT_GLOBAL=$((EC2_INSTANCE_COUNT_GLOBAL + RDS_INSTANCE_COUNT_GLOBAL + LAMBDA_COUNT_GLOBAL + EKS_CLUSTER_COUNT_GLOBAL + ECS_CLUSTER_COUNT_GLOBAL + DynamoDB_COUNT_GLOBAL + EMR_COUNT_GLOBAL + ELASTICACHE_COUNT_GLOBAL + KINESIS_COUNT_GLOBAL + S3_BUCKETS_COUNT_GLOBAL))
+  DCSPM_COUNT_GLOBAL=$((EC2_INSTANCE_COUNT_GLOBAL + RDS_INSTANCE_COUNT_GLOBAL + S3_BUCKETS_COUNT_GLOBAL))
   
   echo "###################################################################################"
   echo "List of Microsoft Defender CSPM Billable Resources:"
   echo "  Total EC2 Instances:     ${EC2_INSTANCE_COUNT_GLOBAL}"
   echo "  Total RDS Instances:     ${RDS_INSTANCE_COUNT_GLOBAL}"
-  echo "  Total S3 Buckets:        ${S3_BUCKETS_COUNT}"
+  echo "  Total S3 Buckets:        ${S3_BUCKETS_COUNT_GLOBAL}"
   echo ""
   echo "Total DCSPM Resources:   ${DCSPM_COUNT_GLOBAL}"
   echo ""
@@ -439,9 +441,9 @@ count_account_resources() {
     echo ""
     echo "###################################################################################"
     echo "EPM Billable Resources:"
-    echo "  Total EC2 Instances:  ${EC2_INSTANCE_COUNT_GLOBAL}"
-    echo "  Total RDS Instances:  ${RDS_INSTANCE_COUNT_GLOBAL}"
-    echo "  Total S3 Buckets:   ${S3_BUCKETS_COUNT}"
+    echo "  Total EC2 Instances: ${EC2_INSTANCE_COUNT_GLOBAL}"
+    echo "  Total RDS Instances: ${RDS_INSTANCE_COUNT_GLOBAL}"
+    echo "  Total S3 Buckets: ${S3_BUCKETS_COUNT_GLOBAL}"
     echo "  Total Lambda Functions: ${LAMBDA_COUNT_GLOBAL}"
     echo "  Total EKS Cluster: ${EKS_CLUSTER_COUNT_GLOBAL}"
     echo "  Total ECS Clusters: ${ECS_CLUSTER_COUNT_GLOBAL}"
